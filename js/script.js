@@ -3,6 +3,10 @@ let game = document.querySelector('#game');
 let time = document.querySelector('#time');
 let game_time = document.querySelector('#game-time');
 
+let time_header = document.querySelector('#time-header');
+let result_header = document.querySelector('#result-header');
+let result = document.querySelector('#result');
+
 let score = 0;
 
 start.addEventListener('click', startGame);
