@@ -18,7 +18,31 @@ function startGame() {
    setGameTime();
    start.style.display = 'none';
    game.style.background = 'white';
+   game_time.setAttribute('disabled', true);
+   time_header.classList.remove('hide');
+   result_header.classList.add('hide');
    renderBox();
+
+   let n = setInterval(() =>{
+      let $time = parseFloat(time.textContent);
+      $time -=0.1;
+      time.textContent = $time.toFixed(1);
+      if($time <= 0){
+         clearInterval(n);
+         endGame();
+      }
+   }, 100);
+}
+
+function endGame(){
+   game.innerHTML = '';
+   time_header.classList.add('hide');
+
+   result_header.classList.remove('hide');
+   result.textContent = score;
+   start.style.display = 'block';
+   game.style.background = '#ccc';
+   game_time.removeAttribute('disabled');
 }
 
 function handlerClick(e){
@@ -51,6 +75,8 @@ function rand(min, max){
 }
 
 function setGameTime() {
+   time_header.classList.remove('hide');
+   result_header.classList.add('hide');
    let $time = parseFloat(game_time.value);
    time.textContent = $time.toFixed(1);
 }
@@ -63,4 +89,3 @@ function randomColor() {
 	}
 	return color;
 }
- 
